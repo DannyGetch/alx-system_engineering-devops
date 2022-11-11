@@ -6,8 +6,9 @@ sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.5
 sudo apt-get -y update
 
-# Install HAProxy
+# Install HAProxy and configure it
 sudo apt-get -y install haproxy
-sudo sed -i -e '$aENABLED=1\n' /etc/default/haproxy
-sudo sed -i -e '$a\listen http-in\n\tbind :80\n\tbalance roundrobin\n\tserver 17682-web-01 3.236.147.89:80 check\n\tserver 17682-web-02 18.232.73.156:80 check\n' /etc/haproxy/haproxy.cfg
+#sudo sed -i -e '$aENABLED=1\n' /etc/default/haproxy
+#sudo sed -i -e '$a\listen http-in\n\tbind :80\n\tbalance roundrobin\n\tserver 17682-web-01 3.236.147.89:80 check\n\tserver 17682-web-02 18.232.73.156:80 check\n' /etc/haproxy/haproxy.cfg
+Sudo sed -i -e '$afrontend haproxy-main\n\tbind *:80\n\toption forwardfor\n\tdefault_backend apache_webservers\n\nbackend nginx webservers\n\tbalance roundrobin\n\tserver 39187-web-01	100.25.163.234:80 check\n\tserver 39187-web-02	35.175.104.221:80 check\n' /etc/haproxy/haproxy.cfg
 sudo service haproxy restart
