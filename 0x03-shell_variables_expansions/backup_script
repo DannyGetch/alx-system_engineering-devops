@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Author: Danny
+# Date Created: 4/6/2022 1:17 PM
+# Last Modified: 4/6/2022 1:17 PM
+
+# Description:
+# Creates a backup
+
+# Usage:
+
+tar -cvf ~/alx-system_engineering-devops/0x03-shell_variables_expansions/my_backup_"$(date +%d-%m-%Y_%H-%M-%S)".tar ~/* 2>/dev/null
+exit 0
