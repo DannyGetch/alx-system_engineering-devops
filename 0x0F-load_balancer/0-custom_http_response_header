@@ -7,4 +7,4 @@ sed -i "/server_name _;/ a\\\trewrite ^/redirect_me http://www.youtube.com perma
 sed -i "/server_name _;/ a\\\tadd_header X-Served-By \"\$HOSTNAME\";" /etc/nginx/sites-available/default
 sed -i "/redirect_me/ a\\\terror_page 404 /custom_404.html;" /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
-service nginx start
+sudo service nginx start
